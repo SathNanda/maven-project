@@ -6,10 +6,6 @@ pipeline {
          string(name: 'tomcat_prod', defaultValue: '3.17.149.43', description: 'Production Server')
     }
 
-    triggers {
-         pollSCM('* * * * *')
-     }
-
 stages{
         stage('Build'){
             steps {
@@ -27,13 +23,13 @@ stages{
             parallel{
                 stage ('Deploy to Staging'){
                     steps {
-                        bat "winscp -i 'C:/Software/cmder/tomcat-demo.pem' **/target/*.war ec2-user@${params.tomcat_dev}:/var/lib/tomcat7/webapps"
+                        bat "winscp -i tomcat-demo.pem **/target/*.war ec2-user@${params.tomcat_dev}:/var/lib/tomcat7/webapps"
                     }
                 }
 
                 stage ("Deploy to Production"){
                     steps {
-                        bat "winscp -i 'C:/Software/cmder/tomcat-demo.pem' **/target/*.war ec2-user@${params.tomcat_prod}:/var/lib/tomcat7/webapps"
+                        bat "winscp -i tomcat-demo.pem **/target/*.war ec2-user@${params.tomcat_prod}:/var/lib/tomcat7/webapps"
                     }
                 }
             }

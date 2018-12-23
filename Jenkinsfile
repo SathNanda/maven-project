@@ -29,7 +29,7 @@ stages{
  
                 stage ("Deploy to Production"){
                     steps {
-                        bat "winscp -i tomcat-demo.pem **/target/*.war ec2-user@$3.17.149.43:/var/lib/tomcat7/webapps"
+                        bat "winscp -i tomcat-demo.pem **/target/*.war ec2-user@3.17.149.43:/var/lib/tomcat7/webapps"
                     }
                 }
             }

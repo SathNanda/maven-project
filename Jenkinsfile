@@ -4,7 +4,7 @@ pipeline {
         stage('Build'){
             steps{
                 bat 'mvn clean package'
-		bat "docker build . -t tomcatwebapp:${env.BUILD_ID}"
+		bat ""C:\Program Files\Docker Toolbox\docker.exe" build . -t tomcatwebapp:${env.BUILD_ID}"
             }
         }
     }
